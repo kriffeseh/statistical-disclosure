@@ -13,7 +13,18 @@
 # I dagsläget funkar det inte med totaler i datat. Dvs har vi Gävle och Sandviken
 # på kommun får vi inte ha total också, då ballar funktionen ur.
 
-# Exempeldata att testa med. 
+# Exempeldata att testa med.
+
+# library(tibble)
+# df <- tibble(kommun = c("Sandviken", "Ockelbo", "Gävle"),
+#              antal = c(3, 1, 9)
+
+# df2 <- tibble(
+#   kommun = c("Sandviken", "Ockelbo", "Gävle"),
+#   antal = c(50, 20, 100)
+# )
+
+
 
 protect_table <- function(df,
                           method = c("ckm",
@@ -87,7 +98,7 @@ protect_table <- function(df,
       maxN = threshold - 1
     )
     
-    sdc <- protectTable(sdc, method = "HITAS")
+    sdc <- protectTable(sdc, method = "SIMPLEHEURISTIC")
     
     df_sdc <- getInfo(sdc, type = "finalData") %>% 
       mutate(Freq = ifelse(sdcStatus != "s", "x", Freq))
