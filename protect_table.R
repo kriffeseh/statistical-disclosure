@@ -1,3 +1,20 @@
+# Funktion för att skydda aggregerade tabeller genom statistical disclosure.
+# I nuläget finns det en egenbyggd ckm funktion (cell-key method).
+# Den ska genererade -2 till +2 på alla värden i tabellen.
+# det styrs i noise_range -2:2. Vill man lägga på mer, ändra i funktionen.
+# Används på egen risk och INTE jämbördigt med riktig CKM på mikrodata!
+
+# Även en sdc funktion som använder paketet sdcTable för att primär- och sekundär
+# trycka datat. För att köra det ställer man in threshold på hur detaljerat man 
+# vill ha detaljeringen.
+
+# I båda fallen behövs freq_col ställas in som den kolumn som har antalskolumnen.
+
+# I dagsläget funkar det inte med totaler i datat. Dvs har vi Gävle och Sandviken
+# på kommun får vi inte ha total också, då ballar funktionen ur.
+
+# Exempeldata att testa med. 
+
 protect_table <- function(df,
                           method = c("ckm",
                                      "sdc"),
