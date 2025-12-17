@@ -34,7 +34,8 @@ pacman::p_load(dplyr,
 
 protect_table <- function(df,
                           method = c("ckm",
-                                     "sdc"),
+                                     "sdc",
+                                     "deterministisk_avrundning"),
                           freq_col = "freq",
                           threshold = 3,
                           noise_range = -2:2) {
@@ -108,6 +109,21 @@ protect_table <- function(df,
     print("Maskerar celler med sdcStatus != s")
     
     return(df_sdc)
+  }
+  
+  # ============================================================
+  # DETERMINISTISK AVRUNDNING
+  # ============================================================
+  if (method == "deterministisk_avrundning") {
+    
+    paste("Avrundar samtliga cellvärden till närmsta multipel av", threshold)
+    
+    df_round <- df %>%
+      mutate(
+        !!freq_col := threshold * round(.data[[freq_col]] / threshold)
+      )
+    
+    return(df_round)
   }
   
   stop("Okänd metod.")
