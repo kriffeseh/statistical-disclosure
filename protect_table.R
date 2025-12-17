@@ -24,7 +24,13 @@
 #   antal = c(50, 20, 100)
 # )
 
+if(!require("pacman")) install.packages("pacman")
 
+pacman::p_load(dplyr,
+               purrr,
+               digest,
+               sdcTable,
+               sdcHierarchies)
 
 protect_table <- function(df,
                           method = c("ckm",
@@ -35,15 +41,10 @@ protect_table <- function(df,
   
   method <- match.arg(method)
   
-  library(dplyr)
-  library(purrr)
-  
   # ============================================================
   # CKM-LIKNANDE BRUSNING (inbyggd funktion)
   # ============================================================
   if (method == "ckm") {
-    
-    library(digest)
     
     brusa_ckm_like <- function(df, cols = freq_col, brus = noise_range) {
       
@@ -68,8 +69,6 @@ protect_table <- function(df,
   # ============================================================
   # SDC-TABLE BASERAT SKYDD
   # ============================================================
-  library(sdcTable)
-  library(sdcHierarchies)
   
   dims <- df %>%
     select(-all_of(freq_col)) %>%
@@ -113,3 +112,11 @@ protect_table <- function(df,
   
   stop("Okänd metod.")
 }
+
+# ============================================================
+# TESTKÖRNING
+# ============================================================
+
+# df_skyddad <- protect_table(df = df, 
+#                             method = "sdc",
+#                             freq_col = "antal")
