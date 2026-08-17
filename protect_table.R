@@ -12,7 +12,7 @@
 
 # I dagsläget funkar det inte med totaler i datat. Dvs har vi Gävle och Sandviken
 # på kommun får vi inte ha total också, då ballar funktionen ur.
-
+#Hello world
 # Exempeldata att testa med.
 
 # library(tibble)
