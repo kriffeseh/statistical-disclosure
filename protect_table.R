@@ -25,7 +25,7 @@
 # )
 #
 # Skapat av Kristoffer Sehlberg
-
+# Reviderat av MR RM
 if(!require("pacman")) install.packages("pacman")
 
 pacman::p_load(dplyr,
