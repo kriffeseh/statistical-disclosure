@@ -23,6 +23,8 @@
 #   kommun = c("Sandviken", "Ockelbo", "Gävle"),
 #   antal = c(50, 20, 100)
 # )
+#
+# Skapat av Kristoffer Sehlberg
 
 if(!require("pacman")) install.packages("pacman")
 
